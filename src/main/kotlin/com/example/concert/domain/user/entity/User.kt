@@ -29,18 +29,14 @@ data class User (
 ) : BaseEntity() {
 
 	fun charge(amount: BigDecimal) {
-		if (amount <= BigDecimal.ZERO) {
-			throw InvalidChargeAmountException(amount)
-		}
+		require(amount > BigDecimal.ZERO) { InvalidChargeAmountException(amount) }
 
 		balance = balance.add(amount)
 		updatedAt = LocalDateTime.now()
 	}
 
 	fun use(amount: BigDecimal) {
-		if (balance < amount) {
-			throw InsufficientBalanceException(balance, amount)
-		}
+		require(balance > amount) { InsufficientBalanceException(balance, amount) }
 
 		balance = balance.subtract(amount)
 		updatedAt = LocalDateTime.now()
