@@ -8,6 +8,7 @@ open class BaseException(
 	val data: Any? = null
 ) : RuntimeException(message)
 
+// User
 class InvalidChargeAmountException(
 	val amount: BigDecimal
 ) : BaseException(
@@ -25,5 +26,50 @@ class InsufficientBalanceException(
 	data = mapOf(
 		"balance" to balance,
 		"requiredAmount" to requiredAmount
+	)
+)
+
+// Concert
+class NoAvailableSeatsException(
+	val scheduleId: Long? = null
+) : BaseException(
+	errorCode = ErrorCode.NO_AVAILABLE_SEATS,
+	message = "예약 가능한 좌석이 없습니다",
+	data = scheduleId?.let { mapOf("scheduleId" to it) }
+)
+
+class SeatRestoreException(
+	val availableSeats: Int,
+	val totalSeats: Int
+) : BaseException(
+	errorCode = ErrorCode.SEAT_RESTORE_ERROR,
+	message = "좌석 수 복구 오류. 현재 좌석: $availableSeats, 총 좌석: $totalSeats",
+	data = mapOf(
+		"availableSeats" to availableSeats,
+		"totalSeats" to totalSeats
+	)
+)
+
+class AlreadyReservedSeatException(
+	val seatId: Long? = null,
+	val status: String
+) : BaseException(
+	errorCode = ErrorCode.ALREADY_RESERVED_SEAT,
+	message = "이미 예약된 좌석입니다. 현재 상태: $status",
+	data = mapOf(
+		"seatId" to seatId,
+		"status" to status
+	)
+)
+
+class NotTemporaryReservedException(
+	val seatId: Long? = null,
+	val status: String
+) : BaseException(
+	errorCode = ErrorCode.NOT_TEMPORARY_RESERVED,
+	message = "임시 예약 상태가 아닙니다. 현재 상태: $status",
+	data = mapOf(
+		"seatId" to seatId,
+		"status" to status
 	)
 )
