@@ -32,15 +32,13 @@ data class ConcertSchedule(
 	var availableSeats: Int,
 ) : BaseEntity() {
 	fun decreaseAvailableSeats() {
-		require(availableSeats > 0) { NoAvailableSeatsException() }
+		require(availableSeats > 0) { throw NoAvailableSeatsException() }
 		availableSeats--
-		updatedAt = LocalDateTime.now()
 	}
 
 	fun increaseAvailableSeats() {
-		require(availableSeats < totalSeats) { SeatRestoreException(availableSeats, totalSeats) }
+		require(availableSeats < totalSeats) { throw SeatRestoreException(availableSeats, totalSeats) }
 		availableSeats++
-		updatedAt = LocalDateTime.now()
 	}
 
 	fun isSoldOut(): Boolean {

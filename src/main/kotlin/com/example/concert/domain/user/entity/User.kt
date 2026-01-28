@@ -8,7 +8,6 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Index
 import jakarta.persistence.Table
 import java.math.BigDecimal
-import java.time.LocalDateTime
 
 @Entity
 @Table(
@@ -29,16 +28,14 @@ data class User (
 ) : BaseEntity() {
 
 	fun charge(amount: BigDecimal) {
-		require(amount > BigDecimal.ZERO) { InvalidChargeAmountException(amount) }
+		require(amount > BigDecimal.ZERO) { throw InvalidChargeAmountException(amount) }
 
 		balance = balance.add(amount)
-		updatedAt = LocalDateTime.now()
 	}
 
 	fun use(amount: BigDecimal) {
-		require(balance > amount) { InsufficientBalanceException(balance, amount) }
+		require(balance >= amount) { throw InsufficientBalanceException(balance, amount) }
 
 		balance = balance.subtract(amount)
-		updatedAt = LocalDateTime.now()
 	}
 }

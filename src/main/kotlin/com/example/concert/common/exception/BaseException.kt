@@ -73,3 +73,29 @@ class NotTemporaryReservedException(
 		"status" to status
 	)
 )
+
+// Reservation
+class NotPendingReservationException(
+	val status: String
+) : BaseException(
+	errorCode = ErrorCode.NOT_PENDING_RESERVATION,
+	message = "현재 대기 중인 예약이 아닙니다. 현재 상태: $status",
+	data = mapOf("status" to status)
+)
+
+class AlreadyCancelledReservationException(
+	val reservationId: Long? = null
+) : BaseException(
+	errorCode = ErrorCode.ALREADY_CANCELLED_RESERVATION,
+	message = "이미 취소된 예약입니다.",
+	data = reservationId?.let { mapOf("reservationId" to it) }
+)
+
+// Payment
+class NotPendingPaymentException(
+	val status: String
+) : BaseException(
+	errorCode = ErrorCode.NOT_PENDING_PAYMENT,
+	message = "결제 대기 상태가 아닙니다. 현재 상태: $status",
+	data = mapOf("status" to status)
+)

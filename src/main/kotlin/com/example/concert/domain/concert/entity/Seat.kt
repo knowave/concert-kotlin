@@ -52,24 +52,22 @@ data class Seat(
 
 	fun reserve(userId: Long) {
 		require(status == SeatStatus.AVAILABLE.name) {
-			AlreadyReservedSeatException(seatId = id, status = status)
+			throw AlreadyReservedSeatException(seatId = id, status = status)
 		}
 
 		status = SeatStatus.TEMP_RESERVED.name
 		reservedBy = userId
 		reservedAt = LocalDateTime.now()
 		expiresAt = LocalDateTime.now().plusMinutes(5)
-		updatedAt = LocalDateTime.now()
 	}
 
 	fun confirm() {
 		require(status == SeatStatus.TEMP_RESERVED.name) {
-			NotTemporaryReservedException(seatId = id, status = status)
+			throw NotTemporaryReservedException(seatId = id, status = status)
 		}
 
 		status = SeatStatus.CONFIRMED.name
 		expiresAt = null
-		updatedAt = LocalDateTime.now()
 	}
 }
 

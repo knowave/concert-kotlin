@@ -17,5 +17,12 @@ enum class ErrorCode (
 
 	// Seat
 	ALREADY_RESERVED_SEAT("S001", "이미 예약된 좌석입니다", HttpStatus.CONFLICT),
-	NOT_TEMPORARY_RESERVED("S002", "임시 예약 상태가 아닙니다", HttpStatus.BAD_REQUEST)
+	NOT_TEMPORARY_RESERVED("S002", "임시 예약 상태가 아닙니다", HttpStatus.BAD_REQUEST),
+
+	// Reservation
+	NOT_PENDING_RESERVATION("R001", "현재 대기 중인 예약이 아닙니다", HttpStatus.BAD_REQUEST),
+	ALREADY_CANCELLED_RESERVATION("R002", "이미 취소된 예약입니다", HttpStatus.BAD_REQUEST),
+
+	// Payment
+	NOT_PENDING_PAYMENT("P001", "결제 대기 상태가 아닙니다", HttpStatus.BAD_REQUEST)
 }
