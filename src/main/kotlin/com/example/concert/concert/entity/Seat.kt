@@ -1,11 +1,10 @@
-package com.example.concert.domain.concert.entity
+package com.example.concert.concert.entity
 
 import com.example.concert.common.entity.BaseEntity
 import com.example.concert.common.exception.AlreadyReservedSeatException
 import com.example.concert.common.exception.NotTemporaryReservedException
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
-import jakarta.persistence.Enumerated
 import jakarta.persistence.Index
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint

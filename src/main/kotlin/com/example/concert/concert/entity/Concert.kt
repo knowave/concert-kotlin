@@ -1,4 +1,4 @@
-package com.example.concert.domain.concert.entity
+package com.example.concert.concert.entity
 
 import com.example.concert.common.entity.BaseEntity
 import jakarta.persistence.Column

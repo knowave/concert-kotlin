@@ -29,6 +29,22 @@ class InsufficientBalanceException(
 	)
 )
 
+class DuplicateEmailException(
+	val email: String
+) : BaseException(
+	errorCode = ErrorCode.DUPLICATE_EMAIL,
+	message = "이미 존재하는 이메일입니다: $email",
+	data = mapOf("email" to email)
+)
+
+class DuplicateUsernameException(
+	val username: String
+) : BaseException(
+	errorCode = ErrorCode.DUPLICATE_USERNAME,
+	message = "이미 존재하는 사용자명입니다: $username",
+	data = mapOf("username" to username)
+)
+
 // Concert
 class NoAvailableSeatsException(
 	val scheduleId: Long? = null

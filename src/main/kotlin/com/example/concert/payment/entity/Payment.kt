@@ -1,4 +1,4 @@
-package com.example.concert.domain.payment.entity
+package com.example.concert.payment.entity
 
 import com.example.concert.common.entity.BaseEntity
 import com.example.concert.common.exception.NotPendingPaymentException
