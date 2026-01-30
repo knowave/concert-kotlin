@@ -9,6 +9,11 @@ spring:
     password: ${DB_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
 
+  # MVC
+  mvc:
+    servlet:
+      path: /api
+
   # JPA
   jpa:
     hibernate:
