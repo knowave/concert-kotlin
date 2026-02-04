@@ -14,3 +14,12 @@ data class CreateUserRequest(
 	@field:Size(max = 255, message = "이메일은 255자 이하여야 합니다")
 	val email: String
 )
+
+data class UpdateUserRequest(
+	@field:Size(min = 2, max = 100, message = "사용자명은 2자 이상 100자 이하여야 합니다")
+	val username: String?,
+
+	@field:Email(message = "올바른 이메일 형식이 아닙니다")
+	@field:Size(max = 255, message = "이메일은 255자 이하여야 합니다")
+	val email: String?
+)

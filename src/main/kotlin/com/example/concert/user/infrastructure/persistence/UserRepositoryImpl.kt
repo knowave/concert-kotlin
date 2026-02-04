@@ -32,4 +32,8 @@ class UserRepositoryImpl(
 	override fun existsByUsername(username: String): Boolean {
 		return jpaUserRepository.existsByUsername(username)
 	}
+
+	override fun deleteById(id: Long) {
+		jpaUserRepository.deleteById(id)
+	}
 }
