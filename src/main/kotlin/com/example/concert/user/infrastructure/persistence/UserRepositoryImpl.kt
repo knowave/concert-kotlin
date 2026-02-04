@@ -13,6 +13,10 @@ class UserRepositoryImpl(
 		return jpaUserRepository.save(user)
 	}
 
+	override fun findById(id: Long): User? {
+		return jpaUserRepository.findById(id).orElse(null)
+	}
+
 	override fun findByEmail(email: String): User? {
 		return jpaUserRepository.findByEmail(email)
 	}

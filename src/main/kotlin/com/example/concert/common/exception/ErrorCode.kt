@@ -12,6 +12,7 @@ enum class ErrorCode (
 	INSUFFICIENT_BALANCE("U002", "잔액이 부족합니다", HttpStatus.BAD_REQUEST),
 	DUPLICATE_EMAIL("U003", "이미 존재하는 이메일입니다", HttpStatus.CONFLICT),
 	DUPLICATE_USERNAME("U004", "이미 존재하는 사용자명입니다", HttpStatus.CONFLICT),
+	USER_NOT_FOUND("U005", "사용자를 찾을 수 없습니다", HttpStatus.NOT_FOUND),
 
 	// Concert
 	NO_AVAILABLE_SEATS("C001", "예약 가능한 좌석이 없습니다", HttpStatus.NOT_FOUND),

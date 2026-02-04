@@ -45,6 +45,14 @@ class DuplicateUsernameException(
 	data = mapOf("username" to username)
 )
 
+class UserNotFoundException(
+	val userId: Long
+) : BaseException(
+	errorCode = ErrorCode.USER_NOT_FOUND,
+	message = "사용자를 찾을 수 없습니다. userId: $userId",
+	data = mapOf("userId" to userId)
+)
+
 // Concert
 class NoAvailableSeatsException(
 	val scheduleId: Long? = null

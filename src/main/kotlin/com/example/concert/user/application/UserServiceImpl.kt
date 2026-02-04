@@ -2,6 +2,7 @@ package com.example.concert.user.application
 
 import com.example.concert.common.exception.DuplicateEmailException
 import com.example.concert.common.exception.DuplicateUsernameException
+import com.example.concert.common.exception.UserNotFoundException
 import com.example.concert.user.application.dto.CreateUserRequest
 import com.example.concert.user.application.dto.UserResponse
 import com.example.concert.user.domain.entity.User
@@ -35,5 +36,12 @@ class UserServiceImpl(
 		val savedUser = userRepository.save(user)
 
 		return UserResponse.from(savedUser)
+	}
+
+	@Transactional(readOnly = true)
+	override fun getUserById(userId: Long): UserResponse {
+		val user = userRepository.findById(userId)
+			?: throw UserNotFoundException(userId)
+		return UserResponse.from(user)
 	}
 }
