@@ -27,5 +27,14 @@ enum class ErrorCode (
 	ALREADY_CANCELLED_RESERVATION("R002", "이미 취소된 예약입니다", HttpStatus.BAD_REQUEST),
 
 	// Payment
-	NOT_PENDING_PAYMENT("P001", "결제 대기 상태가 아닙니다", HttpStatus.BAD_REQUEST)
+	NOT_PENDING_PAYMENT("P001", "결제 대기 상태가 아닙니다", HttpStatus.BAD_REQUEST),
+
+	// Seat
+	SEAT_NOT_FOUND("S003", "좌석을 찾을 수 없습니다", HttpStatus.NOT_FOUND),
+
+	// Schedule
+	SCHEDULE_NOT_FOUND("CS001", "콘서트 일정을 찾을 수 없습니다", HttpStatus.NOT_FOUND),
+
+	// Reservation
+	RESERVATION_NOT_FOUND("R003", "예약을 찾을 수 없습니다", HttpStatus.NOT_FOUND)
 }

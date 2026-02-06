@@ -1,4 +1,4 @@
-package com.example.concert.concert.entity
+package com.example.concert.concert.domain.entity
 
 import com.example.concert.common.entity.BaseEntity
 import com.example.concert.common.exception.NoAvailableSeatsException

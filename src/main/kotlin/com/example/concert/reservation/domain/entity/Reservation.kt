@@ -1,4 +1,4 @@
-package com.example.concert.reservation.entity
+package com.example.concert.reservation.domain.entity
 
 import com.example.concert.common.entity.BaseEntity
 import com.example.concert.common.exception.AlreadyCancelledReservationException

@@ -123,3 +123,30 @@ class NotPendingPaymentException(
 	message = "결제 대기 상태가 아닙니다. 현재 상태: $status",
 	data = mapOf("status" to status)
 )
+
+// Seat
+class SeatNotFoundException(
+	val seatId: Long
+) : BaseException(
+	errorCode = ErrorCode.SEAT_NOT_FOUND,
+	message = "좌석을 찾을 수 없습니다. seatId: $seatId",
+	data = mapOf("seatId" to seatId)
+)
+
+// Schedule
+class ScheduleNotFoundException(
+	val scheduleId: Long
+) : BaseException(
+	errorCode = ErrorCode.SCHEDULE_NOT_FOUND,
+	message = "콘서트 일정을 찾을 수 없습니다. scheduleId: $scheduleId",
+	data = mapOf("scheduleId" to scheduleId)
+)
+
+// Reservation
+class ReservationNotFoundException(
+	val reservationId: Long
+) : BaseException(
+	errorCode = ErrorCode.RESERVATION_NOT_FOUND,
+	message = "예약을 찾을 수 없습니다. reservationId: $reservationId",
+	data = mapOf("reservationId" to reservationId)
+)
