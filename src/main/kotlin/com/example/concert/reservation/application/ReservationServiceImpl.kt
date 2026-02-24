@@ -1,6 +1,7 @@
 package com.example.concert.reservation.application
 
 import com.example.concert.common.exception.ReservationNotFoundException
+import com.example.concert.common.lock.DistributedLock
 import com.example.concert.concert.application.ConcertScheduleService
 import com.example.concert.concert.application.SeatService
 import com.example.concert.reservation.application.dto.CreateReservationRequest
@@ -17,6 +18,7 @@ class ReservationServiceImpl(
 	private val concertScheduleService: ConcertScheduleService
 ) : ReservationService {
 
+	@DistributedLock(key = "'seat:lock:' + #request.seatId")
 	@Transactional
 	override fun reserveSeat(request: CreateReservationRequest): ReservationResponse {
 		val seat = seatService.reserveSeat(request.seatId, request.userId)
@@ -47,6 +49,7 @@ class ReservationServiceImpl(
 			.map { ReservationResponse.from(it) }
 	}
 
+	@DistributedLock(key = "'reservation:lock:' + #reservationId")
 	@Transactional
 	override fun cancelReservation(reservationId: Long): ReservationResponse {
 		val reservation = reservationRepository.findById(reservationId)

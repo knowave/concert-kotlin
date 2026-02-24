@@ -21,7 +21,7 @@ class ConcertScheduleServiceImpl(
 	}
 
 	override fun decreaseAvailableSeats(scheduleId: Long): ConcertSchedule {
-		val schedule = concertScheduleRepository.findByIdWithPessimisticLock(scheduleId)
+		val schedule = concertScheduleRepository.findById(scheduleId)
 			?: throw ScheduleNotFoundException(scheduleId)
 
 		schedule.decreaseAvailableSeats()
@@ -29,7 +29,7 @@ class ConcertScheduleServiceImpl(
 	}
 
 	override fun increaseAvailableSeats(scheduleId: Long): ConcertSchedule {
-		val schedule = concertScheduleRepository.findByIdWithPessimisticLock(scheduleId)
+		val schedule = concertScheduleRepository.findById(scheduleId)
 			?: throw ScheduleNotFoundException(scheduleId)
 
 		schedule.increaseAvailableSeats()

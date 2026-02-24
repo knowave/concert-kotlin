@@ -142,6 +142,15 @@ class ScheduleNotFoundException(
 	data = mapOf("scheduleId" to scheduleId)
 )
 
+// Lock
+class LockAcquisitionFailedException(
+	val lockKey: String
+) : BaseException(
+	errorCode = ErrorCode.LOCK_ACQUISITION_FAILED,
+	message = "락 획득에 실패했습니다. lockKey: $lockKey",
+	data = mapOf("lockKey" to lockKey)
+)
+
 // Reservation
 class ReservationNotFoundException(
 	val reservationId: Long

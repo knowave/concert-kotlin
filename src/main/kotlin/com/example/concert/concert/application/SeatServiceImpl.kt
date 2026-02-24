@@ -22,7 +22,7 @@ class SeatServiceImpl(
 	}
 
 	override fun reserveSeat(seatId: Long, userId: Long): Seat {
-		val seat = seatRepository.findByIdWithPessimisticLock(seatId)
+		val seat = seatRepository.findById(seatId)
 			?: throw SeatNotFoundException(seatId)
 
 		seat.reserve(userId)
@@ -30,7 +30,7 @@ class SeatServiceImpl(
 	}
 
 	override fun releaseSeat(seatId: Long): Seat {
-		val seat = seatRepository.findByIdWithPessimisticLock(seatId)
+		val seat = seatRepository.findById(seatId)
 			?: throw SeatNotFoundException(seatId)
 
 		seat.status = SeatStatus.AVAILABLE.name

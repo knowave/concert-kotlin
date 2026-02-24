@@ -36,5 +36,8 @@ enum class ErrorCode (
 	SCHEDULE_NOT_FOUND("CS001", "콘서트 일정을 찾을 수 없습니다", HttpStatus.NOT_FOUND),
 
 	// Reservation
-	RESERVATION_NOT_FOUND("R003", "예약을 찾을 수 없습니다", HttpStatus.NOT_FOUND)
+	RESERVATION_NOT_FOUND("R003", "예약을 찾을 수 없습니다", HttpStatus.NOT_FOUND),
+
+	// Lock
+	LOCK_ACQUISITION_FAILED("L001", "현재 요청이 많아 처리할 수 없습니다. 잠시 후 다시 시도해주세요.", HttpStatus.CONFLICT)
 }
